@@ -1,0 +1,11 @@
+# Artifact Hub repository metadata for oci://registry-1.docker.io/cedana/cedana-helm.
+# The release job pushes this file to the registry under the tag artifacthub.io.
+
+# The ID on the repository card in the Artifact Hub control panel. It turns on
+# the verified publisher badge.
+repositoryID: PASTE-THE-REPOSITORY-ID-HERE
+
+# Two test builds in the registry that Artifact Hub would otherwise list as versions.
+ignore:
+  - name: cedana-helm
+    version: ^(0\.0\.0-test|0\.2\.3-clh-dev)$
