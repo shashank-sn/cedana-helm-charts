@@ -31,7 +31,7 @@ helm install cedana oci://registry-1.docker.io/cedana/cedana-helm --create-names
 helm install cedana oci://registry-1.docker.io/cedana/cedana-helm --create-namespace -n cedana-system \
 --set config.url=$CEDANA_URL \
 --set config.authToken=$CEDANA_AUTH_TOKEN \
---set config.clusterId=$CLUSTER_ID
+--set config.clusterId=$CLUSTER_ID \
 --set config.pluginsGpuVersion=none
 ```
 
