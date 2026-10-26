@@ -1,0 +1,23 @@
+# Groups the generated release notes by the labels this repo already has.
+changelog:
+  exclude:
+    labels:
+      - skip-release-notes
+    authors:
+      - dependabot
+  categories:
+    - title: Breaking changes
+      labels:
+        - breaking
+    - title: New features
+      labels:
+        - enhancement
+    - title: Fixes
+      labels:
+        - bug
+    - title: Docs
+      labels:
+        - documentation
+    - title: Other changes
+      labels:
+        - "*"
