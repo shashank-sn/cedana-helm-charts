@@ -1,11 +1,35 @@
 apiVersion: v2
 name: cedana-helm
-description: Helm chart for Cedana k8s system
+description: Cedana is automated GPU checkpointing and migration infrastructure that increases the useful work your GPUs deliver. This chart installs the Cedana controller and a helper DaemonSet that checkpoint, restore and migrate running GPU and CPU workloads on Kubernetes.
 type: application
 version: 0.9.406
 # The appVersion is the version of the Cedana API (cedana/cedana-propagator,
 # without the v) this chart should best work with. Pinned by cedana-marshal.
 appVersion: main   # last release v2.0.4.4
+home: https://cedana.com
+icon: https://cedana.com/assets/favicon.svg
+keywords:
+  - checkpoint
+  - restore
+  - checkpoint-restore
+  - checkpointing
+  - gpu-checkpointing
+  - migration
+  - gpu
+  - cuda
+  - criu
+  - kubernetes
+  - inference
+  - training
+  - cold-start
+  - machine-learning
+sources:
+  - https://github.com/cedana/cedana
+  - https://github.com/cedana/cedana-helm-charts
+maintainers:
+  - name: Cedana
+    email: contact@cedana.ai
+    url: https://cedana.com
 
 dependencies:
   - name: prometheus
@@ -20,3 +44,37 @@ dependencies:
     version: "3.4.0"
     repository: "https://nvidia.github.io/dcgm-exporter/helm-charts"
     condition: clusterMetrics.gpu.enabled
+
+annotations:
+  artifacthub.io/category: ai-machine-learning
+  artifacthub.io/links: |
+    - name: Documentation
+      url: https://docs.cedana.ai/cedana-kubernetes/installation
+    - name: Configuration
+      url: https://docs.cedana.ai/cedana-kubernetes/configuration
+    - name: What changes on your cluster when you install Cedana
+      url: https://cedana.com/blog/cedana-installation-cluster-changes/
+    - name: How Cedana checkpoint and restore works
+      url: https://cedana.com/blog/how-cedana-checkpoint-restore-works/
+    - name: What cannot be checkpointed in a GPU workload
+      url: https://cedana.com/blog/gpu-checkpointing-limitations/
+    - name: support
+      url: https://github.com/cedana/cedana-helm-charts/issues
+  # The image tags of the latest release (chart 0.9.406). Update them at every
+  # release, so the security report scans the images this chart installs.
+  artifacthub.io/images: |
+    - name: cedana-helper
+      image: docker.io/cedana/cedana-helper:v0.9.406
+      platforms:
+        - linux/amd64
+        - linux/arm64
+    - name: cedana-controller
+      image: docker.io/cedana/cedana-controller:v0.7.4
+      platforms:
+        - linux/amd64
+        - linux/arm64
+    - name: cedana-uninstaller
+      image: docker.io/alpine/k8s:1.34.0
+      platforms:
+        - linux/amd64
+        - linux/arm64

@@ -29,6 +29,20 @@ jobs:
         run: |
           helm lint cedana-helm
 
+  # Artifact Hub's own linter checks that the chart is ready to list (docs/cli.md in artifacthub/hub).
+  artifacthub:
+    name: Artifact Hub
+    runs-on: ubuntu-latest
+    if: inputs.helm
+    container:
+      image: artifacthub/ah:v1.23.0
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Lint for Artifact Hub
+        working-directory: cedana-helm
+        run: ah lint
+
   version:
     name: Version
     runs-on: ubuntu-latest
